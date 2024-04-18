@@ -44,15 +44,32 @@ const std::map<Xr::Sm16, Material> materials =
 struct Pixel
 {
     Xr::Sm16 type{"air"_sm16};
+    Material material;
 
-    const Material& GetMaterial()
+    Pixel()
+    {
+        UpdateMaterial();
+    }
+
+    Pixel(Xr::Sm16 type_)
+    {
+        type = type_;
+        UpdateMaterial();
+    }
+
+    void UpdateMaterial()
     {
         auto iter = materials.find(type);
         if (iter == materials.end())
         {
             Xr::Kill("Material not found. Sadge.");
         }
-        return iter->second;
+        material = iter->second;
+    }
+
+    const Material& GetMaterial()
+    {
+        return material;
     }
 
     u32 Color() // ARGB format
