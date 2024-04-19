@@ -180,12 +180,9 @@ struct World
             Xr::C2i newplace{x,y};
 
             auto& update = updated(newplace);
-
-            Xr::C2i currplace = update.position;
-
             if (update.counter > 0)
             {
-                std::swap(pixels(currplace), pixels(newplace));
+                std::swap(pixels(update.position), pixels(newplace));
             }
         }
     }
