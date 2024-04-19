@@ -117,7 +117,7 @@ struct World
 
             void Push(Xr::C2i new_position)
             {
-                if (counter == 0 || Xr::Random(0,counter) == 0)
+                if (Xr::Random(0,counter) == 0)
                 {
                     position = new_position;
                 }
