@@ -158,6 +158,8 @@ struct World
             {
                 if (!pixels.in_bounds(pl))
                     continue;
+                //is there something else we could do here instead of a density check?
+                //or is there something *more* we could do?
                 if (m.density > pixels(pl).GetMaterial().density)
                 {
                     newplace = pl;
