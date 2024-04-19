@@ -208,6 +208,9 @@ int main(int argc, char* argv[])
 
     World world;
 
+    const u32 FRAMETIME = 1000.0f/60.0f;
+    u32 lastFrame = SDL_GetTicks();
+
     bool runSimulation = false;
     while (running)
     {
@@ -226,7 +229,11 @@ int main(int argc, char* argv[])
             }
         }
 
-        world.Update(runSimulation);
+        if (SDL_GetTicks()-lastFrame >= FRAMETIME)
+        {
+            world.Update(runSimulation);
+            lastFrame += FRAMETIME;
+        }
 
         void* pixels = nullptr;
         int pitch=0;
